@@ -319,6 +319,8 @@ Commands:
 EOT
 }
 
+svudef='function svu { eval `svu_run "$PS1"\|\|\|b $*`; }; export -f svu'
+
 function usage {
 	if [[ "$1" != "" ]]
 	then				# if any args are present, treat them
@@ -388,9 +390,7 @@ so that code won't break after a rollout or rollback.
 
 SVU directory structure:
 
-Beneath the three main version names is a pool of numbered "code version"
-directories.  Build
-An svu service version is intended to be a directory containing all
+An svu service version (eg, cur) is intended to be a directory containing all
 dependencies; in fact it can hold and point to anything you want, with the
 understanding that switching versions amounts to swapping these symlinks,
 
@@ -403,7 +403,7 @@ numbered N (new), N-1 (cur), and N-2 (old).  The underlying directories are
 
    $svd/cv0/, $svd/cv1/, ..., $svd/cv$npm1/
 
-After initializing, N = 2 to start with.
+After initializing, N should equal 2 to start with.
 
 An "svu rollout" (or rollback) shifts the symlinks higher (lower) in the
 sequence.  The sequence is circular in that a symlink shifts from $npm1
@@ -427,7 +427,7 @@ Setup:
 
 Insert this line into a bash shell startup file (eg, .bashrc),
 
-   function svu { eval `svu_run "$PS1"\|\|\|b $*`; }; export -f svu
+   $svudef
 
 and make the "svu_run" script executable and visible to your \$PATH, eg,
 
