@@ -60,12 +60,12 @@ trap 'echo "$cmds"'" '[[ -s $out ]] && cat $out; rm -fr $out'" EXIT
 	echo \
 'This is meant to be run via a bash function, defined (eg, in .bashrc) as
 
-   function svu { eval `./svu_run "$PS1"\|\|\|b $*`; }; export -f svu
+   function svu { eval `./svu_run "$PS1"\|\|\|b $*`; }
 
  and where svu_run is in your PATH.  Do "svu help" for more information.
 
 '
-	#    function svu { eval `./svu_run "$PS1"\|\|\|b $*`; }; export -f svu
+	#    function svu { eval `./svu_run "$PS1"\|\|\|b $*`; }
 	#    This should be the same function used in testsvu.
 	exit 1
 }
@@ -319,7 +319,7 @@ Commands:
 EOT
 }
 
-svudef='function svu { eval `svu_run "$PS1"\|\|\|b $*`; }; export -f svu'
+svudef='function svu { eval `svu_run "$PS1"\|\|\|b $*`; }'
 
 function usage {
 	if [[ "$1" != "" ]]
@@ -501,7 +501,7 @@ function sanity {
 
 # Use our caller's function for testing with testsvu.
 #
-function svu { eval `svu_run "$PS1"\|\|\|b $*`; } ;export -f svu
+function svu { eval `svu_run "$PS1"\|\|\|b $*`; }
 
 # Call with pattern to count as first arg
 function pathcount {
