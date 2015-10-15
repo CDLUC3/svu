@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
 # XXXXXX need way to return exit status up through eval, eg, currently
-#   boot_install_n2t uselessly checks return from 'svu_run init'
-# XXX reconcile this solaris version changes with mac version
-# XXX roll: should do something with empty N=0 and N=1 dirs on init
-#     so roll out and back don't create havoc??
+#   we uselessly check return from 'svu_run init'
 
 # Author: John Kunze, jak@ucop.edu
-# Copyright (c) 2012-2014, UC Regents.  BSD-type open source license.
+# Copyright (c) 2012-2015, UC Regents.  BSD-type open source license.
 
 VERSION=0.1			# version of this script
 SVU_HOME=${SVU_HOME:-~}		# default is to put sv below ~
